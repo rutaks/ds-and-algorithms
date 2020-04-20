@@ -36,3 +36,32 @@ def two_number_sum_2(arr, target_sum):
         else:
             table[n] = True
     return []
+
+
+# THIRD METHOD: VERY GOOD | TIME: O(n) | SPACE: O(1)
+# Sorts First the arr, traverses both lower and higher sides of the array
+# Takes the sum of both current higher & lower items of the array
+    # if the sum is equal to the target sum, return both items
+    # if the sum is less than the target, go to next lower value of array
+    # if the sum is greater than the target, go to previous higher value of array
+# Since array is sorted we know that the if the sum is lower than target,
+# it would mean that the lower item is too small & we need to find the next greater value
+# Vice versa
+def two_number_sum_3(arr, target_sum):
+    arr.sort()
+    lower_index = 0
+    higher_index = len(arr) - 1
+    while lower_index < higher_index:
+        l = arr[lower_index]
+        r = arr[higher_index]
+        sum = l + r
+        if sum == target_sum:
+            return [l, r]
+        elif sum < target_sum:
+            lower_index += 1
+        elif sum > target_sum:
+            higher_index -= 1
+    return
+
+
+print(two_number_sum_3([1, 2, 3, 4, 5, 6, 7, 8, 9], 4))
