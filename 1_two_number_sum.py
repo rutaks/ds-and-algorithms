@@ -19,3 +19,20 @@ def two_number_sum_1(numbers, target):
                 return [first_num, second_num]
 
     return []
+
+
+# SECOND METHOD: TIME: O(n) | SPACE: O(n)
+# Uses a list to keep track of items iterated on
+# Finds the difference of the target sum & current item in array
+# to find the possible second variable for the sum
+# If the difference is not in the list, it will be add
+# If it is in the list, then we have found our target sum
+def two_number_sum_2(arr, target_sum):
+    table = {}
+    for n in arr:
+        possible_val = target_sum - n
+        if possible_val in table:
+            return [possible_val, n]
+        else:
+            table[n] = True
+    return []
